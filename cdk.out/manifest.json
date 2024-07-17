@@ -1,0 +1,209 @@
+{
+  "version": "35.0.0",
+  "artifacts": {
+    "AwsWorkshopStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AwsWorkshopStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AwsWorkshopStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "AwsWorkshopStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/89fa463759f5a83f63b2be457a88a4748646002af3d9903b06bb851b82a1e886.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AwsWorkshopStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AwsWorkshopStack.assets"
+      ],
+      "metadata": {
+        "/AwsWorkshopStack/GetDataLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDataLambdaServiceRole2E324F5A"
+          }
+        ],
+        "/AwsWorkshopStack/GetDataLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDataLambdaServiceRoleDefaultPolicyAEC403EF"
+          }
+        ],
+        "/AwsWorkshopStack/GetDataLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GetDataLambda50AD8F20"
+          }
+        ],
+        "/AwsWorkshopStack/RawBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RawBucket0C3EE094"
+          }
+        ],
+        "/AwsWorkshopStack/RawBucket/Notifications/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RawBucketNotificationsAC3090B1"
+          }
+        ],
+        "/AwsWorkshopStack/RawBucket/AllowBucketNotificationsToAwsWorkshopStackEnqueueRawDataLambda798119F4": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RawBucketAllowBucketNotificationsToAwsWorkshopStackEnqueueRawDataLambda798119F444D2319A"
+          }
+        ],
+        "/AwsWorkshopStack/EnqueueRawDataLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EnqueueRawDataLambdaServiceRoleA7B0927E"
+          }
+        ],
+        "/AwsWorkshopStack/EnqueueRawDataLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EnqueueRawDataLambdaServiceRoleDefaultPolicy55B527D0"
+          }
+        ],
+        "/AwsWorkshopStack/EnqueueRawDataLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EnqueueRawDataLambdaEBF549F0"
+          }
+        ],
+        "/AwsWorkshopStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleB6FB88EC"
+          }
+        ],
+        "/AwsWorkshopStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db834RoleDefaultPolicy2CF63D36"
+          }
+        ],
+        "/AwsWorkshopStack/BucketNotificationsHandler050a0587b7544547bf325f094a3db834/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketNotificationsHandler050a0587b7544547bf325f094a3db8347ECC3691"
+          }
+        ],
+        "/AwsWorkshopStack/RawQueue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RawQueueD6EB3021"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessedQueue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessedQueue71DCB182"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessRawQueueLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessRawQueueLambdaServiceRoleE87B7466"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessRawQueueLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessRawQueueLambdaServiceRoleDefaultPolicyABA78E81"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessRawQueueLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessRawQueueLambda19518C11"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessRawQueueLambda/SqsEventSource:AwsWorkshopStackRawQueueDE42E5D2/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessRawQueueLambdaSqsEventSourceAwsWorkshopStackRawQueueDE42E5D2C26EBFEF"
+          }
+        ],
+        "/AwsWorkshopStack/ProcessedBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProcessedBucketDE59930C"
+          }
+        ],
+        "/AwsWorkshopStack/LoadLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadLambdaServiceRole647CEF96"
+          }
+        ],
+        "/AwsWorkshopStack/LoadLambda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadLambdaServiceRoleDefaultPolicyFB92459D"
+          }
+        ],
+        "/AwsWorkshopStack/LoadLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadLambda2B5EB8E4"
+          }
+        ],
+        "/AwsWorkshopStack/LoadLambda/SqsEventSource:AwsWorkshopStackProcessedQueue73227245/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadLambdaSqsEventSourceAwsWorkshopStackProcessedQueue73227245BCBB44DF"
+          }
+        ],
+        "/AwsWorkshopStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AwsWorkshopStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/AwsWorkshopStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/AwsWorkshopStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "AwsWorkshopStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
