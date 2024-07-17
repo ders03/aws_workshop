@@ -1,6 +1,6 @@
 
 # Welcome to your CDK Python project!
-
+# To use this CDK app you will need to provide a "the Cat API" key in the function /lambda/get_data.py.
 This is a blank project for CDK development with Python.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
