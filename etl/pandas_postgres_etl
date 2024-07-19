@@ -10,8 +10,6 @@ def get_data() -> dict:
     data = json.loads(raw)
     return data
 
-#print(get_data())
-
 def transform(data) -> pd.DataFrame:
     unknown_breeds = []
     known_breeds = []
@@ -21,7 +19,6 @@ def transform(data) -> pd.DataFrame:
             unknown_breeds.append(record)
         else:
             breeds = record["breeds"][0]
-            #print(breeds["bidability"])
             del record["breeds"]
             if "cat_friendly" not in breeds.keys():
                 breeds["cat_friendly"] = ""
@@ -39,12 +36,8 @@ def transform(data) -> pd.DataFrame:
         known_breeds["weight"] = known_breeds["weight"].apply(lambda x: json.dumps(x))
     return [unknown_breeds, known_breeds]
 
-#print(transform(get_data())[1])
-
 def load(data:pd.DataFrame) -> None:
-    #print(data[1])
     disk_engine = sqlalchemy.create_engine('postgresql://postgres:postgres@localhost:5432/postgres')
-    #data.to_sql('Cats_Known_Breed', disk_engine, if_exists='append')
     if not data[0].empty:
         data[0].to_sql('Cats_Unknown_Breed', disk_engine, if_exists='append')
     if not data[1].empty:
