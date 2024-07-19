@@ -1,0 +1,55 @@
+import json
+import urllib.request
+import pandas as pd
+import sqlalchemy
+
+def get_data() -> dict:
+    url =  "https://api.thecatapi.com/v1/images/search?limit=50&api_key=live_04E0HWtzMnxDR5vA3dZWSMxa2v8mAbNyTUCfiRySKbFrBz30h2fqZAxHYb63fVju"
+    response = urllib.request.urlopen(url)
+    raw = response.read()
+    data = json.loads(raw)
+    return data
+
+#print(get_data())
+
+def transform(data) -> pd.DataFrame:
+    unknown_breeds = []
+    known_breeds = []
+    for record in data:
+        if len(record["breeds"]) == 0:
+            record["breeds"] = ["unknown"]
+            unknown_breeds.append(record)
+        else:
+            breeds = record["breeds"][0]
+            #print(breeds["bidability"])
+            del record["breeds"]
+            if "cat_friendly" not in breeds.keys():
+                breeds["cat_friendly"] = ""
+            if "cfa_url" not in breeds.keys():
+                breeds["cfa_url"] = ""
+            if "bidability" not in breeds.keys():
+                breeds["bidability"] = ""
+            record = breeds.update(record)
+            known_breeds.append(breeds)
+    unknown_breeds = pd.DataFrame(unknown_breeds)
+    if "categories" in unknown_breeds.columns:
+        unknown_breeds["categories"] = unknown_breeds["categories"].apply(lambda x: json.dumps(x))
+    known_breeds = pd.DataFrame(known_breeds)
+    if not known_breeds.empty:
+        known_breeds["weight"] = known_breeds["weight"].apply(lambda x: json.dumps(x))
+    return [unknown_breeds, known_breeds]
+
+#print(transform(get_data())[1])
+
+def load(data:pd.DataFrame) -> None:
+    #print(data[1])
+    disk_engine = sqlalchemy.create_engine('postgresql://postgres:postgres@localhost:5432/postgres')
+    #data.to_sql('Cats_Known_Breed', disk_engine, if_exists='append')
+    if not data[0].empty:
+        data[0].to_sql('Cats_Unknown_Breed', disk_engine, if_exists='append')
+    if not data[1].empty:
+        data[1].to_sql('Cats_Known_Breed', disk_engine, if_exists='append')
+
+data = get_data()
+data = transform(data)
+load(data)
