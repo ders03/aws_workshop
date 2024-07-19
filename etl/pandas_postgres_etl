@@ -13,7 +13,9 @@ def get_data() -> dict:
 def transform(data) -> pd.DataFrame:
     unknown_breeds = []
     known_breeds = []
-    for record in data:
+    for record in data: 
+        if "categories" in record: 
+            record["categories"] = record["categories"][0]["name"]
         if len(record["breeds"]) == 0:
             record["breeds"] = ["unknown"]
             unknown_breeds.append(record)
@@ -29,8 +31,6 @@ def transform(data) -> pd.DataFrame:
             record = breeds.update(record)
             known_breeds.append(breeds)
     unknown_breeds = pd.DataFrame(unknown_breeds)
-    if "categories" in unknown_breeds.columns:
-        unknown_breeds["categories"] = unknown_breeds["categories"].apply(lambda x: json.dumps(x))
     known_breeds = pd.DataFrame(known_breeds)
     if not known_breeds.empty:
         known_breeds["weight"] = known_breeds["weight"].apply(lambda x: json.dumps(x))
